@@ -38,6 +38,7 @@ files=(
   "scripts/test.sh"
   "scripts/run.sh"
   "scripts/snapshot.sh"
+  "scripts/new_project.sh"
 )
 
 missing=0
