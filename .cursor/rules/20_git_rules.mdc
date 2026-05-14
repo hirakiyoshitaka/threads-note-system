@@ -1,0 +1,17 @@
+---
+description: Git safety and commit hygiene
+alwaysApply: true
+---
+
+# Git Rules
+
+- Do not rewrite history unless explicitly requested.
+- Do not commit secrets or generated credentials.
+- Do not commit `.env`, API keys, tokens, passwords, or private certificates.
+- Do not commit heavy or generated folders such as `node_modules/`, `venv/`, `.venv/`, `output/`, `dist/`, or `build/` unless explicitly required.
+- Keep commits focused on one intent.
+- Use clear commit messages describing why.
+- Verify working tree state before and after changes.
+- Run `git status` before staging files.
+- Review `git diff --stat` before committing.
+- If unsure whether a file should be committed, stop and ask the user.

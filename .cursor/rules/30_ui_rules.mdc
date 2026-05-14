@@ -1,0 +1,13 @@
+---
+description: UI and UX implementation baseline
+alwaysApply: true
+---
+
+# UI Rules
+
+- Preserve existing user flows by default.
+- Keep interactions accessible (keyboard and readable labels).
+- Surface loading, success, and error states explicitly.
+- Avoid layout shifts and hidden side effects.
+- Keep text and actions consistent across screens.
+- Make the next action obvious to the user after every operation.

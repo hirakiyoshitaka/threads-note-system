@@ -1,0 +1,15 @@
+---
+description: Quality and verification standards
+alwaysApply: true
+---
+
+# Quality Rules
+
+- Add or update tests for changed behavior when possible.
+- Run relevant checks before finalizing.
+- Fail fast on unclear assumptions; document open risks.
+- Avoid silent error handling.
+- Prefer explicit names and small functions.
+- Do not mark a task complete unless verification was attempted.
+- If tests are missing, explain what manual checks were performed.
+- Keep user-facing error messages clear and actionable.

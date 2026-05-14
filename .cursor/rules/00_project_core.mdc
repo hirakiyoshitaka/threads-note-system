@@ -1,0 +1,15 @@
+---
+description: Core project operating rules
+alwaysApply: true
+---
+
+# Project Core Rules
+
+- Always read `TASK.md` before implementation.
+- Always follow `AGENTS.md` as the shared rulebook for all AI agents.
+- Restate scope and acceptance criteria in concise form.
+- Keep edits minimal, composable, and easy to review.
+- Prefer scripts in `scripts/` for repeatable operations.
+- If a change affects behavior, update docs in `docs/`.
+- Do not expose `.env` contents, API keys, or secrets.
+- Preserve existing working flows unless the task explicitly approves changes.

@@ -1,0 +1,12 @@
+---
+description: Protect existing behavior unless approved
+alwaysApply: true
+---
+
+# No Breaking Existing Flow
+
+- Existing behavior is the baseline contract.
+- Any breaking change requires explicit user approval.
+- Introduce feature flags or compatibility layers when needed.
+- Include rollback notes for risky edits.
+- Document migration steps in `docs/WORKFLOW.md` when applicable.
