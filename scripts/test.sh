@@ -28,6 +28,7 @@ required_docs=(
   "docs/WORKFLOW.md"
   "docs/STRATEGY.md"
   "docs/LANES.md"
+  "docs/THREADS_QUEUE.md"
   "docs/CONTENT_RULES.md"
   "docs/ERROR_LOG.md"
   "docs/DECISIONS.md"
@@ -43,6 +44,10 @@ required_docs=(
   "samples/threads_7posts_yonpi.md"
   "samples/bidaily_threads_note_linked_plan.md"
   ".ai/reports/threads_note/bidaily_cycle_001_ai_request/human_answer_sheet.md"
+  "data/threads_queue/2026-05-15_cycle_001_ai_request.json"
+  "scripts/threads_queue_check.py"
+  "scripts/threads_queue_check.sh"
+  "scripts/threads_post_api_stub.py"
 )
 
 for f in "${required_docs[@]}"; do
@@ -56,6 +61,9 @@ done
 
 echo ""
 echo "[test] project-specific tests"
+
+echo "[test] checking Threads queue"
+bash scripts/threads_queue_check.sh
 
 if [[ -f "package.json" ]]; then
   echo "[info] package.json found"

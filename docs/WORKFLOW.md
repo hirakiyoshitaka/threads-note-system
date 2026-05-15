@@ -16,22 +16,31 @@
 
 1. Threads悩み予告を作る。
 2. note下書きを作る。
-3. `human_answer_sheet.md` に本人が回答する。
-4. その回答を元にnote本文をリライトする。
-5. `rewrite_checkpoints.md` で確認する。
-6. 問題なければ予約配信へ回す。
-7. Threads投稿とnote記事の対応関係を記録する。
+3. Threads投稿を `data/threads_queue/` に `review_required` で保存する。
+4. `scripts/threads_queue_check.sh` で投稿キューを確認する。
+5. 本人確認後、Threads投稿の `status` を `approved` にする。
+6. `human_answer_sheet.md` に本人が回答する。
+7. その回答を元にnote本文をリライトする。
+8. `rewrite_checkpoints.md` で確認する。
+9. 問題なければnote予約配信へ回す。
+10. 将来、Threads API投稿スクリプトで `approved` の投稿だけを実行する。
+11. Threads投稿とnote記事の対応関係を記録する。
 
 補助ファイル:
 
 - 本人回答シートの共通テンプレート: `templates/human_rewrite_answer_sheet.md`
 - 回答を元にリライトするプロンプト: `prompts/rewrite_note_with_human_answers.md`
+- Threads投稿キュー設計: `docs/THREADS_QUEUE.md`
+- Threads投稿キュー確認: `scripts/threads_queue_check.sh`
+- Threads API投稿スタブ: `scripts/threads_post_api_stub.py`
 
 重要:
 
 - note下書きはそのまま公開しない。
 - 本人回答シートに実体験、削除したい表現、入れたくない話、予約判断を入れてからリライトする。
 - 回答シートなしで既存の予約配信フローへ渡さない。
+- Threads投稿は `review_required` のまま自動投稿しない。
+- APIキーやトークンはコードやキューJSONに直書きしない。
 
 詳細は `docs/LANES.md` を確認します。
 
