@@ -1,105 +1,146 @@
-# TASK
+cd /Users/macbookprohiraki/threads
 
-## Current task
+cat > TASK.md <<'EOF'
+重要な追加修正です。
 
-- Title: 既存note毎日配信レーンを守りながら2日おきThreads誘導レーンを追加する
-- Owner: AI agents with user review
-- Priority: High
-- Due date: Today
+2日おきThreads誘導レーンで、note下書きは作れましたが、
+ユーザー本人がリアルな体験を入れてリライトするための
+「返答の雛形」「本人入力シート」が足りません。
 
-## Context
+目的：
+AIが作ったnote下書きに対して、
+ユーザーが自分の実体験・失敗談・言葉遣い・具体例を入れやすくする
+リライト用の返答テンプレートを追加してください。
 
-- Problem statement:
-  既存の毎日note自動配信は今まで通り継続し、壊さない。その横に、2日おきにThreadsへ悩み予告を配信し、その悩みへの答えをnote下書き・予約投稿候補として自動生成する新しい誘導レーンを追加する。
+重要：
+- 既存の毎日note自動配信レーンは絶対に変更しない
+- 2日おきThreads誘導レーンの補助機能として追加する
+- note下書きをそのまま公開しない
+- ユーザー本人のリアルな回答を入れてからリライトする流れにする
+- まだ git commit はしないでください
 
-- Expected outcome:
-  最強ハーネスの `TASK.md`、`prompts/`、`docs/`、`templates/`、`samples/`、`scripts/`、`.ai/task_history/` を活かし、既存レーンと新誘導レーンを分離して運用できる。Threads悩み予告、note回答下書き、確認・リライト、予約配信判断までの流れが再利用できる。
+やってほしいこと：
 
-- Non-goals:
-  - 既存の毎日note自動配信レーンを変更・停止しない。
-  - Threadsまたはnoteへの直接自動投稿はこの変更では実装しない。
-  - 有料API連携、スクレイピング、外部サービス連携は行わない。
-  - noteプロフィールや実績を捏造しない。
-  - 既存のハーネス構成や安全ルールを壊さない。
-  - git commit は行わない。
+1. 新しいテンプレートを作成してください。
 
-## Build scope
+保存先：
+templates/human_rewrite_answer_sheet.md
 
-- `prompts/`:
-  - Threads投稿1本生成用プロンプト
-  - 7日分の投稿導線生成用プロンプト
-  - note CTA生成用プロンプト
-  - 2日おきThreads悩み予告生成用プロンプト
-  - Threadsの悩みに対するnote下書き生成用プロンプト
-- `docs/`:
-  - 既存note毎日配信レーンと新しいThreads誘導レーンの分離設計
-  - 勝ち筋、読者、テーマ、note導線の戦略
-  - 毎日の運用手順
-  - 口調、文体、避ける表現、投稿の型
-- `templates/`:
-  - 共感フック、自分の失敗談、今日の学び、読者への置き換え、自然なCTAを含む投稿テンプレート
-  - 2日おき連動レーンの運用テンプレート
-- `samples/`:
-  - 「57歳からAIを実務で使いながら前に進んでいる人」の立ち位置で作るThreads投稿7本
-  - Threads悩み予告とnote下書きテーマの連動サンプル
-- `scripts/`:
-  - 必要Markdown、テンプレ、サンプル、プロンプトの存在確認
-- `.ai/task_history/`:
-  - 今回の作業結果を記録
+内容：
+AIが作ったnote下書きを見たあと、ユーザーが答えるための入力シートにしてください。
 
-## Operating method
+必須項目：
+- 今回のテーマ
+- Threadsで投げた悩み
+- 自分が実際につまずいた場面
+- その時に何をしたか
+- うまくいかなかったこと
+- 少し改善したきっかけ
+- 今ならどうするか
+- 読者に一番伝えたいこと
+- 自分の言葉に直したい表現
+- 削除したい表現
+- 追加したい具体例
+- noteに入れてよい実体験
+- noteに入れたくない話
+- 最後の一言
+- 予約配信してよいかの判断
 
-1. 既存の毎日note自動配信レーンはそのまま継続する。
-2. 新しい誘導レーンでは、2日おきに `prompts/threads_problem_preview_generator.md` で悩み予告Threadsを作る。
-3. Threadsで「次回、こんな悩みありませんか？」と問いを投げる。
-4. その問いへの答えを `prompts/note_draft_from_threads_problem.md` でnote下書き化する。
-5. 自分が確認し、事実、口調、経験談、CTAをリライトする。
-6. 問題なければ既存の予約投稿フローに渡す。
-7. Threads投稿とnote記事の対応関係、反応、改善点を記録する。
+2. 返答しやすい質問形式にしてください。
 
-## Acceptance criteria
+形式：
+- 質問
+- 記入例
+- 自分の回答欄
 
-- [ ] `TASK.md` が今回の目的、作るもの、運用方法、未実装課題を説明している。
-- [ ] `prompts/threads_post_generator.md` が存在し、1投稿生成に使える。
-- [ ] `prompts/threads_7day_plan.md` が存在し、7日分の導線設計に使える。
-- [ ] `prompts/note_cta_generator.md` が存在し、自然なCTA生成に使える。
-- [ ] `prompts/threads_problem_preview_generator.md` が存在し、2日おきの悩み予告投稿に使える。
-- [ ] `prompts/note_draft_from_threads_problem.md` が存在し、悩みへの回答note下書きに使える。
-- [ ] `docs/LANES.md` が既存レーンと新誘導レーンの分離を説明している。
-- [ ] `docs/STRATEGY.md` が勝ち筋、刺さる読者、投稿テーマ、note導線を整理している。
-- [ ] `docs/WORKFLOW.md` が毎日の運用手順を説明している。
-- [ ] `docs/CONTENT_RULES.md` が口調、文体、避ける表現、刺さる型を説明している。
-- [ ] 投稿テンプレートが再利用できる形で保存されている。
-- [ ] 2日おき連動レーンのテンプレートが保存されている。
-- [ ] Threads用サンプル投稿7本が完成形で保存されている。
-- [ ] `README.md` がプロジェクトの目的と使い方を説明している。
-- [ ] `.ai/task_history/` に今回の作業記録がある。
-- [ ] `bash scripts/test.sh` が成功する。
-- [ ] `bash scripts/doctor.sh` が成功する。
+3. 1サイクル目用の回答シートも作成してください。
 
-## Unimplemented backlog
+保存先：
+.ai/reports/threads_note/bidaily_cycle_001_ai_request/human_answer_sheet.md
 
-- noteプロフィール本文と実際の記事URLを入力として管理する設定ファイル。
-- 既存のnote毎日配信システムとの実接続点の明文化。
-- note予約投稿APIまたは外部予約機能への接続。
-- Threads予約投稿APIまたは外部予約機能への接続。
-- 日次KPIを1行で記録する運用フォーマットの拡張。
-- 投稿別の反応から翌日の改善案を出すレポート。
-- 生成した投稿の文字数チェック自動化。
-- note記事本文の構成生成とThreads投稿の連動強化。
+テーマ：
+AIに何を頼めばいいか分からない
 
-## Verification plan
+このテーマに合わせて、ユーザーがリアル体験を書き込める質問を入れてください。
 
-- Commands to run:
-  - `bash scripts/test.sh`
-  - `bash scripts/doctor.sh`
+質問例：
+- ChatGPTを初めて開いた時、何に困りましたか？
+- 最初に何を頼もうとして止まりましたか？
+- 実際にAIへ頼んで失敗した言葉はありますか？
+- 今なら最初に何を頼みますか？
+- 同世代の人に一番伝えたいことは何ですか？
+- note本文のどこが自分っぽくないですか？
+- 逆に、この表現は残したいですか？
+- 最後に読者へ何と言いたいですか？
 
-- Manual checks:
-  - 7本の投稿が200〜350文字程度で、そのままThreadsに投稿できる完成形になっている。
-  - 各投稿の最後にnoteへ自然に誘導するCTAがある。
-  - docsとpromptsが日次運用で再利用できる内容になっている。
+4. 新しいリライト用プロンプトを作ってください。
 
-- Rollback plan:
-  - `git status --short` で変更ファイルを確認する。
-  - 不要な追加ファイルはユーザー確認後に削除する。
-  - 既存ファイルに問題があれば、該当ファイルだけ差分を見て最小修正する。
+保存先：
+prompts/rewrite_note_with_human_answers.md
+
+目的：
+AI下書きと human_answer_sheet.md の回答を元に、
+本人らしいnote記事へリライトするためのプロンプト。
+
+Input：
+- AI生成note下書き
+- human_answer_sheet.md の回答
+- よんぴーの口調ルール
+- 削除したい表現
+- 残したい表現
+- 入れてよい実体験
+- 入れたくない話
+
+Output：
+- リライト済みnote本文
+- 変更点
+- まだ本人確認が必要な箇所
+- 公開前チェックリスト
+
+5. docs/WORKFLOW.md を更新してください。
+
+2日おきレーンの流れに、以下を追加してください。
+
+新しい流れ：
+1. Threads悩み予告を作る
+2. note下書きを作る
+3. human_answer_sheet.md に本人が回答する
+4. その回答を元にnote本文をリライトする
+5. rewrite_checkpoints.md で確認する
+6. 問題なければ予約配信へ回す
+
+6. docs/LANES.md を更新してください。
+
+人間の確認ゲートに、
+「本人回答シートに実体験を入れる」
+「回答シートなしで予約配信しない」
+というルールを追加してください。
+
+7. scripts/test.sh / scripts/doctor.sh を更新してください。
+
+以下の存在確認を追加してください。
+- templates/human_rewrite_answer_sheet.md
+- prompts/rewrite_note_with_human_answers.md
+- .ai/reports/threads_note/bidaily_cycle_001_ai_request/human_answer_sheet.md
+
+8. .ai/task_history に今回の作業記録を追加してください。
+
+保存内容：
+- note下書きに本人のリアルを入れるための回答シートを追加
+- 1サイクル目専用の human_answer_sheet.md を追加
+- 回答を元にリライトするプロンプトを追加
+- 回答シートなしで予約配信しないルールを追加
+
+9. 最後に以下を実行してください。
+
+bash scripts/test.sh
+bash scripts/doctor.sh
+
+最後に日本語で報告してください。
+- 変更したファイル
+- 返答の雛形をどこに作ったか
+- 1サイクル目で何を記入すればいいか
+- 回答後にどうリライトするか
+- テスト結果
+- 次に必要な作業
+EOF

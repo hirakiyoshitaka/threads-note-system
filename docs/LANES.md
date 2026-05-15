@@ -34,9 +34,11 @@
 1. 2日おきに読者の悩みを1つ選ぶ。
 2. Threadsへ「次回、こんな悩みありませんか？」という問いを投稿する。
 3. その問いに対する答えをnote下書きとして生成する。
-4. 自分で確認してリライトする。
-5. 問題なければ既存の予約投稿フローに渡す。
-6. Threads投稿とnote記事の対応関係を記録する。
+4. `human_answer_sheet.md` に本人の実体験、失敗談、言葉遣い、公開可否を記入する。
+5. 回答シートを元にnote本文をリライトする。
+6. `rewrite_checkpoints.md` で確認する。
+7. 問題なければ既存の予約投稿フローに渡す。
+8. Threads投稿とnote記事の対応関係を記録する。
 
 ### 投稿の位置づけ
 
@@ -58,6 +60,8 @@ note下書きは、必ず人間が確認してから予約配信します。
 
 確認項目:
 
+- 本人回答シートに実体験を入れているか。
+- 回答シートなしで予約配信しようとしていないか。
 - 自分の体験として言える内容か。
 - 事実と違う実績や数字が入っていないか。
 - 読者を煽りすぎていないか。
@@ -77,5 +81,7 @@ note下書きは、必ず人間が確認してから予約配信します。
 
 - Threads悩み予告プロンプト: `prompts/threads_problem_preview_generator.md`
 - note回答下書きプロンプト: `prompts/note_draft_from_threads_problem.md`
+- 本人回答シートテンプレート: `templates/human_rewrite_answer_sheet.md`
+- 回答を元にリライトするプロンプト: `prompts/rewrite_note_with_human_answers.md`
 - 2日おき連動テンプレート: `templates/bidaily_threads_note_lane.md`
 - 連動サンプル: `samples/bidaily_threads_note_linked_plan.md`

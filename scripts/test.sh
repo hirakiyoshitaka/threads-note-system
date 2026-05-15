@@ -36,10 +36,13 @@ required_docs=(
   "prompts/note_cta_generator.md"
   "prompts/threads_problem_preview_generator.md"
   "prompts/note_draft_from_threads_problem.md"
+  "prompts/rewrite_note_with_human_answers.md"
   "templates/threads_note_post_template.md"
   "templates/bidaily_threads_note_lane.md"
+  "templates/human_rewrite_answer_sheet.md"
   "samples/threads_7posts_yonpi.md"
   "samples/bidaily_threads_note_linked_plan.md"
+  ".ai/reports/threads_note/bidaily_cycle_001_ai_request/human_answer_sheet.md"
 )
 
 for f in "${required_docs[@]}"; do

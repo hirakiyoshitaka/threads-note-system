@@ -14,13 +14,24 @@
 
 ### 新レーン: 2日おきThreads悩み予告
 
-1. 2日おきに、読者の悩みを1つ選ぶ。
-2. `prompts/threads_problem_preview_generator.md` でThreads悩み予告を作る。
-3. Threadsで「次回、こんな悩みありませんか？」と問いを投げる。
-4. `prompts/note_draft_from_threads_problem.md` で、その悩みへの回答note下書きを作る。
-5. 自分で確認し、体験、事実、口調、CTAをリライトする。
-6. 問題なければ既存の予約配信フローに渡す。
+1. Threads悩み予告を作る。
+2. note下書きを作る。
+3. `human_answer_sheet.md` に本人が回答する。
+4. その回答を元にnote本文をリライトする。
+5. `rewrite_checkpoints.md` で確認する。
+6. 問題なければ予約配信へ回す。
 7. Threads投稿とnote記事の対応関係を記録する。
+
+補助ファイル:
+
+- 本人回答シートの共通テンプレート: `templates/human_rewrite_answer_sheet.md`
+- 回答を元にリライトするプロンプト: `prompts/rewrite_note_with_human_answers.md`
+
+重要:
+
+- note下書きはそのまま公開しない。
+- 本人回答シートに実体験、削除したい表現、入れたくない話、予約判断を入れてからリライトする。
+- 回答シートなしで既存の予約配信フローへ渡さない。
 
 詳細は `docs/LANES.md` を確認します。
 
