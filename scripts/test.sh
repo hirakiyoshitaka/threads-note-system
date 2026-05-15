@@ -27,14 +27,19 @@ required_docs=(
   "docs/SPEC.md"
   "docs/WORKFLOW.md"
   "docs/STRATEGY.md"
+  "docs/LANES.md"
   "docs/CONTENT_RULES.md"
   "docs/ERROR_LOG.md"
   "docs/DECISIONS.md"
   "prompts/threads_post_generator.md"
   "prompts/threads_7day_plan.md"
   "prompts/note_cta_generator.md"
+  "prompts/threads_problem_preview_generator.md"
+  "prompts/note_draft_from_threads_problem.md"
   "templates/threads_note_post_template.md"
+  "templates/bidaily_threads_note_lane.md"
   "samples/threads_7posts_yonpi.md"
+  "samples/bidaily_threads_note_linked_plan.md"
 )
 
 for f in "${required_docs[@]}"; do

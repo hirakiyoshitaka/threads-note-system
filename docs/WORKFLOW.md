@@ -4,6 +4,26 @@
 
 このプロジェクトでは、最強ハーネスの流れをコンテンツ運用にも使います。`TASK.md` で目的を固定し、`docs/` で判断基準を確認し、`prompts/` で生成し、`samples/` と `templates/` を再利用し、`.ai/task_history/` に結果を残します。
 
+## 2レーン運用
+
+### 既存レーン: 毎日note自動配信
+
+- 今まで通り継続する。
+- 新しいThreads誘導レーンから、既存レーンの配信設定や予約済み記事を変更しない。
+- 新レーンで作ったnote下書きは、本人確認後にだけ既存の予約投稿フローへ渡す。
+
+### 新レーン: 2日おきThreads悩み予告
+
+1. 2日おきに、読者の悩みを1つ選ぶ。
+2. `prompts/threads_problem_preview_generator.md` でThreads悩み予告を作る。
+3. Threadsで「次回、こんな悩みありませんか？」と問いを投げる。
+4. `prompts/note_draft_from_threads_problem.md` で、その悩みへの回答note下書きを作る。
+5. 自分で確認し、体験、事実、口調、CTAをリライトする。
+6. 問題なければ既存の予約配信フローに渡す。
+7. Threads投稿とnote記事の対応関係を記録する。
+
+詳細は `docs/LANES.md` を確認します。
+
 ### 1. 今日のテーマを決める
 
 - note記事のテーマを1つ選ぶ。
@@ -38,6 +58,12 @@
 - `prompts/threads_7day_plan.md` で7日分の投稿導線を作る。
 - 7日後にクリックやnote反応を見て、次週のテーマとCTAを決める。
 - 結果は `.ai/task_history/` または `.ai/reports/threads_note/` に残す。
+
+### 2日おき連動レーンの記録
+
+- `templates/bidaily_threads_note_lane.md` をコピーして1サイクル分を記録する。
+- `samples/bidaily_threads_note_linked_plan.md` を参考に、Threads予告とnote下書きテーマを対応させる。
+- 既存note毎日配信レーンとテーマが重なる場合は、既存レーンを優先する。
 
 ## 目的
 
