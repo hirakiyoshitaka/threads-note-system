@@ -1,35 +1,75 @@
-# 最強ハーネス (AI Development Harness)
+# Threads -> note導線生成システム
 
-A starter workspace for running AI-assisted development with clear rules, prompts, scripts, and documentation.
+最強ハーネスの構成を使って、Threads投稿からnote記事へ自然に誘導するための再利用可能なコンテンツ運用システムです。
+
+noteプロフィールと記事テーマをもとに、Threads投稿、7日分の導線、note CTA、投稿テンプレ、運用手順、検証スクリプトをこのリポジトリ内で管理します。
 
 ## Structure
+
 - `.cursor/rules/`: persistent Cursor rules.
-- `docs/`: requirements, architecture, specs, workflow, logs.
-- `prompts/`: reusable prompts for implementation/debug/review/commit.
-- `scripts/`: repeatable project commands.
-- `.ai/`: generated plans, reports, reviews, and task history.
+- `docs/`: strategy, workflow, content rules, requirements, architecture, logs.
+- `prompts/`: reusable prompts for Threads posts, 7-day planning, note CTA, implementation/debug/review/commit.
+- `templates/`: reusable Threads -> note post templates.
+- `samples/`: ready-to-post examples.
+- `scripts/`: repeatable project checks and local automation.
+- `.ai/`: generated reports, plans, reviews, and task history.
 
 ## Quick start
-1. Copy `.env.example` to `.env` and fill values.
-2. Update `TASK.md` with the active objective.
-3. Run `scripts/doctor.sh`.
-4. Start your project with `scripts/run.sh`.
+
+1. Read `TASK.md`.
+2. Read `docs/STRATEGY.md`, `docs/WORKFLOW.md`, and `docs/CONTENT_RULES.md`.
+3. Pick today's note theme and reader pain.
+4. Use `templates/threads_note_post_template.md` to draft the structure.
+5. Use `prompts/threads_post_generator.md` to create one Threads post.
+6. Use `prompts/note_cta_generator.md` when the CTA needs variants.
+7. Run `bash scripts/test.sh` and `bash scripts/doctor.sh` before saving a larger change.
+
+## Daily operation
+
+1. Decide today's theme from the note article.
+2. Generate one Threads post with a soft note CTA.
+3. Post manually to Threads.
+4. Record reactions, clicks, and note results.
+5. Use the result to improve tomorrow's hook and CTA.
+
+For weekly planning, use `prompts/threads_7day_plan.md`.
+
+## Sample output
+
+- 7 ready-to-post Threads examples are saved in `samples/threads_7posts_yonpi.md`.
+- The reusable post template is saved in `templates/threads_note_post_template.md`.
 
 ## Principles
+
 - Keep changes small and testable.
 - Prefer explicit docs over hidden assumptions.
 - Never break existing workflows without approval.
-## AI roles
+- Do not fabricate results, testimonials, urgency, or income claims.
+- Do not auto-post to Threads or note from this project.
+
+## Included automation examples
+
+- Threads to note monetization workflow:
+  - `bash scripts/threads_note_automation.sh init ...`
+  - `bash scripts/threads_note_automation.sh log ...`
+  - `bash scripts/threads_note_automation.sh report ...`
+  - See `docs/THREADS_NOTE_AUTOMATION.md`
+
+## Harness roles
 
 ### Cursor
+
 Use Cursor as the main workspace for:
+
 - Opening the project folder
 - Editing files
 - Reviewing diffs
 - Managing project context
 
 ### Claude Code
+
 Use Claude Code as the main implementation agent for:
+
 - Reading `AGENTS.md`, `CLAUDE.md`, and `TASK.md`
 - Proposing an implementation plan
 - Editing files
@@ -37,7 +77,9 @@ Use Claude Code as the main implementation agent for:
 - Reporting results
 
 ### Codex
+
 Use Codex as the reviewer for:
+
 - Reviewing Claude Code changes
 - Checking safety and correctness
 - Verifying tests and scripts

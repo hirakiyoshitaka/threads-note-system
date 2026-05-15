@@ -26,8 +26,15 @@ required_docs=(
   "docs/ARCHITECTURE.md"
   "docs/SPEC.md"
   "docs/WORKFLOW.md"
+  "docs/STRATEGY.md"
+  "docs/CONTENT_RULES.md"
   "docs/ERROR_LOG.md"
   "docs/DECISIONS.md"
+  "prompts/threads_post_generator.md"
+  "prompts/threads_7day_plan.md"
+  "prompts/note_cta_generator.md"
+  "templates/threads_note_post_template.md"
+  "samples/threads_7posts_yonpi.md"
 )
 
 for f in "${required_docs[@]}"; do

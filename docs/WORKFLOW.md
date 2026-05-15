@@ -1,5 +1,44 @@
 # WORKFLOW
 
+## Threads -> note 毎日運用
+
+このプロジェクトでは、最強ハーネスの流れをコンテンツ運用にも使います。`TASK.md` で目的を固定し、`docs/` で判断基準を確認し、`prompts/` で生成し、`samples/` と `templates/` を再利用し、`.ai/task_history/` に結果を残します。
+
+### 1. 今日のテーマを決める
+
+- note記事のテーマを1つ選ぶ。
+- 今日の読者の悩みを1つに絞る。
+- `docs/STRATEGY.md` で、よんぴーの立ち位置と読者像に合っているか確認する。
+
+### 2. Threads投稿を生成する
+
+- `templates/threads_note_post_template.md` の型に沿って骨子を書く。
+- `prompts/threads_post_generator.md` に、noteプロフィール、記事テーマ、読者の悩み、自分の体験を入れる。
+- 200〜350文字程度の完成形に整える。
+
+### 3. note記事へ自然に誘導する
+
+- CTAに迷ったら `prompts/note_cta_generator.md` を使う。
+- Threads本文では共感と気づきを出し、noteでは手順、具体例、チェックリストを読める形にする。
+- 強い売り込みや煽りは避ける。
+
+### 4. 投稿結果を記録する
+
+- 投稿後に、表示数、いいね、返信、保存、プロフィール閲覧、noteクリック、note閲覧、購入などを記録する。
+- キャンペーンとして運用する場合は `scripts/threads_note_automation.sh` の `log` と `report` を使う。
+
+### 5. 翌日の改善に使う
+
+- 反応がよかったフックを次の日の冒頭に反映する。
+- クリックされたCTAの言い方を残す。
+- 反応が弱かった投稿は、テーマ、読者の悩み、CTAのどれがズレたかを見る。
+
+### 週次運用
+
+- `prompts/threads_7day_plan.md` で7日分の投稿導線を作る。
+- 7日後にクリックやnote反応を見て、次週のテーマとCTAを決める。
+- 結果は `.ai/task_history/` または `.ai/reports/threads_note/` に残す。
+
 ## 目的
 
 このファイルは、最強ハーネスを使って、Cursor・Claude Code・Codex の3つのAIを安全に使い分けながら開発するための手順書です。

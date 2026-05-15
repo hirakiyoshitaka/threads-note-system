@@ -44,3 +44,12 @@ Before editing, read:
 ### Risks / Notes
 
 ### Next steps
+
+## Optional growth automation add-on
+
+If the task involves social-to-content monetization, include:
+
+- Threads post funnel design
+- CTA variation design
+- UTM tracking setup
+- KPI logging and weekly optimization loop
