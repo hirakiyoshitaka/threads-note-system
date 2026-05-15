@@ -65,6 +65,12 @@ echo "[test] project-specific tests"
 echo "[test] checking Threads queue"
 bash scripts/threads_queue_check.sh
 
+echo "[test] checking Threads API poster dry run"
+python3 scripts/threads_post_api_stub.py
+
+echo "[test] compiling Threads scripts"
+PYTHONPYCACHEPREFIX="${TMPDIR:-/tmp}/threads_pycache" python3 -m py_compile scripts/threads_queue_check.py scripts/threads_post_api_stub.py
+
 if [[ -f "package.json" ]]; then
   echo "[info] package.json found"
   echo "[info] add npm test here when the project has tests"

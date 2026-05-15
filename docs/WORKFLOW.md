@@ -42,6 +42,15 @@
 - Threads投稿は `review_required` のまま自動投稿しない。
 - APIキーやトークンはコードやキューJSONに直書きしない。
 
+Threads実投稿の流れ:
+
+1. `bash scripts/threads_queue_check.sh`
+2. `python3 scripts/threads_post_api_stub.py` でDRY RUN確認
+3. 環境変数 `THREADS_ACCESS_TOKEN` / `THREADS_USER_ID` を設定
+4. `DRY_RUN=false python3 scripts/threads_post_api_stub.py`
+5. 投稿後に `bash scripts/threads_queue_check.sh`
+6. JSONが `posted` になったか確認する。
+
 詳細は `docs/LANES.md` を確認します。
 
 ### 1. 今日のテーマを決める

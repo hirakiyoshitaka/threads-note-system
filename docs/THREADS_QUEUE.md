@@ -19,9 +19,12 @@
 - 既存の毎日note自動配信レーンは変更しない。
 - 既存のnote配信フロー、予約済み記事、配信スケジュールを変更しない。
 - `review_required` の投稿は自動投稿しない。
+- `approved` の投稿だけThreads API投稿対象にする。
 - `approved` にする前に、本人が本文、リンク先、投稿予定時刻を確認する。
 - APIキーやアクセストークンはコード、JSON、Markdownに直書きしない。
-- Threads APIの実投稿は、明示的にDRY RUNを解除するまで行わない。
+- `DRY_RUN=true` は確認のみで、Threads APIへ実投稿しない。
+- `DRY_RUN=false` の時だけThreads APIへの実投稿を行う。
+- 実投稿前に必ず `bash scripts/threads_queue_check.sh` を実行する。
 
 ## 保存先
 
@@ -71,12 +74,28 @@ YYYY-MM-DD_cycle_001_ai_request.json
 
 ## 将来のThreads API投稿
 
-将来の投稿スクリプトは `scripts/threads_post_api_stub.py` を土台にします。
+Threads API投稿スクリプトは `scripts/threads_post_api_stub.py` です。
 
 - `THREADS_ACCESS_TOKEN` を環境変数から読む。
 - `THREADS_USER_ID` を環境変数から読む。
 - `approved` 状態のキューだけを投稿対象にする。
 - 初期値は `DRY_RUN=true` とし、誤投稿を防ぐ。
-- 実投稿処理はThreads APIの仕様確定後にTODO部分へ追加する。
-- 投稿成功後は本来 `status` を `posted`、`posted_at` を投稿時刻に更新する。
+- `DRY_RUN=true` の時は投稿対象の確認だけを行う。
+- `DRY_RUN=false` の時だけ、Threads APIでコンテナ作成とpublishを実行する。
+- 投稿成功後は `status` を `posted`、`posted_at` を投稿時刻に更新する。
+- 投稿IDが取得できる場合は `threads_post_id` を保存する。
+- 投稿失敗時は `status` を `approved` のまま残し、`error_message` に理由を入れる。
+- 失敗した投稿は、原因を直した後に同じキューJSONで再実行できる。
 
+実投稿の前後は次の順番で確認します。
+
+```bash
+bash scripts/threads_queue_check.sh
+python3 scripts/threads_post_api_stub.py
+export THREADS_ACCESS_TOKEN="..."
+export THREADS_USER_ID="..."
+DRY_RUN=false python3 scripts/threads_post_api_stub.py
+bash scripts/threads_queue_check.sh
+```
+
+トークン値はログ、ドキュメント、JSONに残しません。
